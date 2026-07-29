@@ -28,4 +28,22 @@ class Admin extends Authenticatable
     protected $casts = [
         'password' => 'hashed',
     ];
+
+    /**
+     * Disable remember token for admin.
+     */
+    public function getRememberToken()
+    {
+        return null;
+    }
+
+    public function setRememberToken($value)
+    {
+        // Do nothing
+    }
+
+    public function getRememberTokenName()
+    {
+        return '';
+    }
 }
