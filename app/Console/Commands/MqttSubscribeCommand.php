@@ -112,10 +112,11 @@ class MqttSubscribeCommand extends Command
             ->setReconnectAutomatically(true);
 
         if ($useTls) {
-            $connectionSettings
+            $connectionSettings = $connectionSettings
                 ->setUseTls(true)
                 ->setTlsSelfSignedAllowed(true)
-                ->setTlsVerifyPeer(false);
+                ->setTlsVerifyPeer(false)
+                ->setTlsVerifyPeerName(false);
         }
 
         while (true) {
