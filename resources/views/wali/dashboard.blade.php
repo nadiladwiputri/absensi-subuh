@@ -351,7 +351,7 @@
                         </div>
                         <!-- Poin Badge -->
                         <div class="point-badge {{ $a->total_poin >= 0 ? 'point-positive' : 'point-negative' }}">
-                            {{ $a->total_poin }} Pts
+                            {{ $a->total_poin }} Poin
                         </div>
                     </div>
 

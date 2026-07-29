@@ -368,7 +368,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <span class="point-badge">{{ $r->total_poin }} Pts</span>
+                                    <span class="point-badge">{{ $r->total_poin }} Poin</span>
                                 </td>
                                 <td>
                                     @if($r->terakhir_absen)
