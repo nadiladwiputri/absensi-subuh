@@ -180,14 +180,15 @@ class MqttSubscribeCommand extends Command
                 $fajrSec = $fajrHour * 3600 + $fajrMinute * 60;
                 
                 $windowOpenSec = $fajrSec - (5 * 60);
-                $lateThresholdSec = $fajrSec + (40 * 60); // 40 minutes after adzan
+                $onTimeLimitSec = $fajrSec + (5 * 60);
+                $lateThresholdSec = $fajrSec + (70 * 60); // 70 minutes after adzan
 
-                if ($nowSec >= $windowOpenSec && $nowSec <= $fajrSec) {
+                if ($nowSec >= $windowOpenSec && $nowSec <= $onTimeLimitSec) {
                     $status = 'Hadir';
                     $poin = 100;
                     $keterangan = 'Tepat waktu';
                     $messageStr = 'Absensi berhasil (Tepat Waktu)';
-                } elseif ($nowSec > $fajrSec && $nowSec <= $lateThresholdSec) {
+                } elseif ($nowSec > $onTimeLimitSec && $nowSec <= $lateThresholdSec) {
                     $status = 'Terlambat';
                     $minutesLate = ceil(($nowSec - $fajrSec) / 60);
                     $poin = 50;

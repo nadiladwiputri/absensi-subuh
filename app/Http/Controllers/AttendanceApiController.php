@@ -77,19 +77,20 @@ class AttendanceApiController extends Controller
         $fajrSec = $fajrHour * 3600 + $fajrMinute * 60;
         
         $windowOpenSec = $fajrSec - (5 * 60); // 5 minutes before adzan
-        $lateThresholdSec = $fajrSec + (40 * 60); // 40 minutes after adzan
+        $onTimeLimitSec = $fajrSec + (5 * 60); // 5 minutes after adzan
+        $lateThresholdSec = $fajrSec + (70 * 60); // 70 minutes after adzan
 
         if ($request->input('simulate') == true) {
             $status = 'Hadir';
             $poin = 100;
             $keterangan = 'Tepat waktu (Simulasi)';
             $message = 'Absensi berhasil dicatat (Simulasi Tepat Waktu)';
-        } elseif ($nowSec >= $windowOpenSec && $nowSec <= $fajrSec) {
+        } elseif ($nowSec >= $windowOpenSec && $nowSec <= $onTimeLimitSec) {
             $status = 'Hadir';
             $poin = 100;
             $keterangan = 'Tepat waktu';
             $message = 'Absensi berhasil dicatat (Tepat Waktu)';
-        } elseif ($nowSec > $fajrSec && $nowSec <= $lateThresholdSec) {
+        } elseif ($nowSec > $onTimeLimitSec && $nowSec <= $lateThresholdSec) {
             $status = 'Terlambat';
             $minutesLate = ceil(($nowSec - $fajrSec) / 60);
             $poin = 50; // Terlambat flat 50 poin
