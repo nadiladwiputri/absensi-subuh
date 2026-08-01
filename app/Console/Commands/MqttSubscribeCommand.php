@@ -179,9 +179,9 @@ class MqttSubscribeCommand extends Command
                 $nowSec = $now->hour * 3600 + $now->minute * 60 + $now->second;
                 $fajrSec = $fajrHour * 3600 + $fajrMinute * 60;
                 
-                $windowOpenSec = $fajrSec - (5 * 60);
+                $windowOpenSec = $fajrSec;
                 $onTimeLimitSec = $fajrSec + (5 * 60);
-                $lateThresholdSec = $fajrSec + (70 * 60); // 70 minutes after adzan
+                $lateThresholdSec = $fajrSec + (30 * 60); // 30 minutes after adzan
 
                 if ($nowSec >= $windowOpenSec && $nowSec <= $onTimeLimitSec) {
                     $status = 'Hadir';

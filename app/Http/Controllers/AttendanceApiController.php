@@ -76,9 +76,9 @@ class AttendanceApiController extends Controller
         $nowSec = $now->hour * 3600 + $now->minute * 60 + $now->second;
         $fajrSec = $fajrHour * 3600 + $fajrMinute * 60;
         
-        $windowOpenSec = $fajrSec - (5 * 60); // 5 minutes before adzan
-        $onTimeLimitSec = $fajrSec + (5 * 60); // 5 minutes after adzan
-        $lateThresholdSec = $fajrSec + (70 * 60); // 70 minutes after adzan
+        $windowOpenSec = $fajrSec; // Pas masuk waktu adzan
+        $onTimeLimitSec = $fajrSec + (5 * 60); // 5 menit setelah adzan
+        $lateThresholdSec = $fajrSec + (30 * 60); // 30 menit setelah adzan
 
         if ($request->input('simulate') == true) {
             $status = 'Hadir';
