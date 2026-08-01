@@ -10,4 +10,3 @@ Artisan::command('inspire', function () {
 use Illuminate\Support\Facades\Schedule;
 
 Schedule::command('attendance:send-weekly-recap')->weekly();
-Schedule::command('attendance:send-absent-notifications')->dailyAt('06:00');
